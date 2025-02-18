@@ -1,4 +1,4 @@
-// View.h - Header File
+
 #ifndef VIEW_H
 #define VIEW_H
 

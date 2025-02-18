@@ -19,7 +19,7 @@ int main()
   cout << "Enter one of the following options: " << endl;
   cout << "0. const test" << endl;
   cout << "1. TAArray test (adding and removing in order)" << endl;
-  // cout<<"4. Test const"<<endl;
+  
   cin >> choice;
   bool flag = true;
   switch (choice)
@@ -46,7 +46,7 @@ int main()
   }
 }
 
-// if you did not const the getter function, this will not compile
+
 void constTestHelper(const TAArray& ta){
     TextArea* temp = ta.get(0);
     temp = ta.get(ids[0]);

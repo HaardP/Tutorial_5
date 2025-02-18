@@ -1,11 +1,10 @@
-// View.cc - Corrected Full Implementation
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include "View.h"
 using namespace std;
 
-// Display menu and get user's selection
 void View::menu(const vector<string>& menu, int& choice) {
     cout << "\nPlease make a selection:\n\n";
     for (size_t i = 0; i < menu.size(); ++i) {
@@ -23,7 +22,6 @@ void View::menu(const vector<string>& menu, int& choice) {
     }
 }
 
-// Get a number from user input
 void View::getNumber(int& num) {
     cout << "Enter a number: ";
     cin >> num;

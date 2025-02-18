@@ -1,11 +1,11 @@
-// TestControl.cc - Corrected Full Implementation
+
 #include "TestControl.h"
 #include "T5TextArea.h"
 #include "T5TAArray.h"
 #include <iostream>
 using namespace std;
 
-// Menu options
+
 vector<string> TestControl::menu = {
     "1. Run TextArea Test",
     "2. Run TAArray Test",
@@ -13,7 +13,7 @@ vector<string> TestControl::menu = {
     "4. Exit"
 };
 
-// Launches menu and handles user choices
+
 void TestControl::launch() {
     int choice = -1;
     while (choice != 4) {
@@ -28,7 +28,7 @@ void TestControl::launch() {
     }
 }
 
-// TextArea Test
+
 void TestControl::testTextAreas() {
     cout << "\nRunning TextArea Test:\n";
     T5TextArea ta1(10, 10, 100, 30, "ta1", "Hello World");
@@ -38,7 +38,7 @@ void TestControl::testTextAreas() {
     tester.pressEnterToContinue();
 }
 
-// TAArray Test
+
 void TestControl::testTAArray() {
     cout << "\nRunning TAArray Test:\n";
     T5TAArray array;
@@ -48,7 +48,7 @@ void TestControl::testTAArray() {
     tester.pressEnterToContinue();
 }
 
-// Tutorial 5 Extended Tests
+
 void TestControl::testExtendedTutorial5() {
     cout << "\nRunning Extended Tutorial 5 Tests:\n";
     T5TAArray t5Array;

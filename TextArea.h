@@ -1,27 +1,26 @@
-// TextArea.h
 #ifndef TEXTAREA_H
 #define TEXTAREA_H
-#include "defs.h"
-#include "RGB.h"
+
 #include <string>
+#include <iostream>
 using namespace std;
 
 class TextArea {
-  private:
-    string id, text;
-    Rectangle dimensions;
-    RGB fill, border;
+  protected:
+    string id;
+    string text;
+    int x, y, width, height; 
 
   public:
-    // Constructor (declaration only)
-    TextArea(int x, int y, int w, int h, string tid, string ttxt, 
-             RGB f = RGB::WHITE(), RGB b = RGB::BLACK());
+    TextArea(int x, int y, int w, int h, string tid, string ttxt)
+      : x(x), y(y), width(w), height(h), id(tid), text(ttxt) {}
 
-    // Method Declarations
-    bool overlaps(const TextArea& ta) const;
-    void print() const;
+    virtual void print() const {
+        cout << "TextArea[" << id << "] at (" << x << ", " << y 
+             << ") Size: " << width << "x" << height 
+             << " Text: " << text << endl;
+    }
 
-    // Getter for ID (useful for T5TAArray)
-    string getId() const { return id; }
+    virtual ~TextArea() = default;
 };
 #endif

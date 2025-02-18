@@ -1,46 +1,34 @@
-// TAArray.cc
 #include "TAArray.h"
 #include <iostream>
 using namespace std;
 
-// Constructor
-TAArray::TAArray() : size(0) {
-    elements = new TextArea*[MAX_COMPONENTS];
-}
-
-// Destructor (Frees All Allocated Memory)
-TAArray::~TAArray() {
-    for (int i = 0; i < size; ++i) {
-        delete elements[i]; 
-    }
-    delete[] elements;
-}
-
-// Add Method (Adds TextArea to Array)
 bool TAArray::add(TextArea* ta) {
-    if (size >= MAX_COMPONENTS) return false; 
-    elements[size++] = ta;
+    areas.push_back(ta);
     return true;
 }
 
-// Get Method (Returns TextArea by Index)
-TextArea* TAArray::get(int index) const {
-    if (index < 0 || index >= size) return nullptr;
-    return elements[index];
-}
-
-// Print Method (Displays All TextAreas in the Array)
-void TAArray::print() const {
-    cout << "TextAreas in Array (" << size << " total):" << endl;
-    for (int i = 0; i < size; ++i) {
-        if (elements[i]) {
-            elements[i]->print();
-            cout << "--------------------------------\n";
+bool TAArray::remove(const string& id) {
+    for (auto it = areas.begin(); it != areas.end(); ++it) {
+        if ((*it)->getId() == id) {
+            delete *it;
+            areas.erase(it);
+            return true;
         }
     }
+    return false;
 }
 
-// Get Size (Returns Current Number of TextAreas)
-int TAArray::getSize() const {
-    return size;
+TextArea* TAArray::get(const string& id) const {
+    for (auto area : areas) {
+        if (area->getId() == id) {
+            return area;
+        }
+    }
+    return nullptr;
+}
+
+void TAArray::print() const {
+    for (const auto& area : areas) {
+        area->print();
+    }
 }

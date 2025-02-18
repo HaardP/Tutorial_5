@@ -1,21 +1,52 @@
-// TAArray.h
 #ifndef TAARRAY_H
 #define TAARRAY_H
+
 #include "TextArea.h"
-#include <iostream>
+#include <vector>
 using namespace std;
 
 class TAArray {
-  protected:
-    TextArea** elements;
-    int size;
+protected:
+    vector<TextArea*> areas;
 
-  public:
-    TAArray();                       // Constructor
-    virtual ~TAArray();              // Destructor
-    virtual bool add(TextArea* ta);  // Add TextArea
-    virtual TextArea* get(int index) const; // Get TextArea by Index
-    virtual void print() const;      // Print All TextAreas
-    virtual int getSize() const;     // Get Number of Stored Areas
+public:
+    virtual ~TAArray() {
+        for (auto area : areas) {
+            delete area;
+        }
+    }
+
+    virtual bool add(TextArea* ta) {
+        areas.push_back(ta);
+        return true;
+    }
+
+    virtual bool remove(const string& id) {
+        for (auto it = areas.begin(); it != areas.end(); ++it) {
+            if ((*it)->getId() == id) {
+                delete *it;
+                areas.erase(it);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    virtual TextArea* get(const string& id) const {
+        for (auto area : areas) {
+            if (area->getId() == id) {
+                return area;
+            }
+        }
+        return nullptr;
+    }
+
+    virtual void print() const {
+        for (const auto& area : areas) {
+            area->print();
+        }
+    }
+
+    int getSize() const { return areas.size(); }
 };
 #endif
